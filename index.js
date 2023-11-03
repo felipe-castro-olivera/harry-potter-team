@@ -1,4 +1,5 @@
 const urlAPI = "https://hp-api.onrender.com/api/characters"
+const urlImagen = "https://placehold.co/300x400?text=Sin+foto"
 
 const { createApp } = Vue;
 
@@ -34,14 +35,22 @@ const { createApp } = Vue;
 
         },
         computed:{
-            filtro(){
-                let filtrobuscador = this.personajesBkp.filter(personaje.name.toLowerCase().includes(this.buscador.toLowerCase()))
+            filtro(personaje){
+                let filtrobuscador = this.personajesBkp.filter(personaje => personaje.name.toLowerCase().includes(this.buscador.toLowerCase()))
 
                 if(this.categoriasSeleccionadas.length == 0){
                     this.personajes = filtrobuscador
+                    
                 }else{
                     this.personajes = filtrobuscador.filter(personaje => this.categoriasSeleccionadas.includes(personaje.house))
                 }
+                console.log(filtrobuscador);
             },
+            imagenExistente(personaje){
+                if(personaje.image == "" )
+                this.personajes.push()
+
+            }
         },
+        
       }).mount("#app");
