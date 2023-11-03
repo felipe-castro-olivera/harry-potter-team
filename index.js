@@ -1,5 +1,4 @@
 const urlAPI = "https://hp-api.onrender.com/api/characters"
-const urlImagen = "https://placehold.co/300x400?text=Sin+foto"
 
 const { createApp } = Vue;
 
@@ -12,6 +11,7 @@ const { createApp } = Vue;
             categoriasCasas: [],
             categoriasSeleccionadas:[],
             buscador: "", 
+            urlImagen: "https://placehold.co/300x400?text=Sin+foto",
 
     
           };
@@ -29,6 +29,7 @@ const { createApp } = Vue;
                     this.personajes = data
                     this.personajesBkp = data
                     this.categoriasCasas = Array.from(new Set(this.personajes.map((personaje) => personaje.house).splice(4,4)))
+                   
                     console.log(this.categoriasCasas);
                 })
             }
@@ -46,11 +47,8 @@ const { createApp } = Vue;
                 }
                 console.log(filtrobuscador);
             },
-            imagenExistente(personaje){
-                if(personaje.image == "" )
-                this.personajes.push()
-
-            }
+             
         },
         
+
       }).mount("#app");
