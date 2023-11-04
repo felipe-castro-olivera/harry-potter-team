@@ -1,0 +1,21 @@
+@font-face {
+    font-family: 'HarryPotterFont';
+    src: url('./fuenteHarry/HARRYP__.TTF') format('truetype'); 
+}
+
+.nombre-personaje {
+    font-family: 'HarryPotterFont', cursive;
+    font-size: 3.5rem;
+    
+}
+
+.imagenPersonaje {
+    display: flex;
+    align-items: center;
+    /* background-image: url(https://img.freepik.com/fotos-premium/fondo-textura-papel-pergamino-antiguo-fondo-pantalla-vintage_765582-522.jpg); */
+    
+}
+
+.fondoPersonaje {
+    background-image: url(https://img.freepik.com/fotos-premium/fondo-textura-papel-pergamino-antiguo-fondo-pantalla-vintage_765582-522.jpg);
+}
