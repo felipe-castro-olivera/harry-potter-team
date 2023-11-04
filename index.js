@@ -7,6 +7,7 @@ createApp({
     return {
       message: "Hola Harry!",
       personajes: null,
+      personaje: null,
       personajesBkp: [],
       categoriasCasas: [],
       categoriasSeleccionadas: [],
@@ -18,6 +19,8 @@ createApp({
   },
   created() {
     this.dataHarry(urlAPI);
+    
+    
   },
   methods: {
     dataHarry(url) {
@@ -34,6 +37,11 @@ createApp({
           );
         });
     },
+    mostrarModal(personaje) {
+      this.personajeAMostrar = personaje;
+    },
+      
+ 
   },
   computed: {
     filtro(personaje) {

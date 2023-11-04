@@ -17,7 +17,7 @@
 
   <body>
     <div id="app">
-      <header>
+      <header class="sticky-top">
         <nav class="navbar bg-black">
           <div class="container-fluid">
             <a class="navbar-brand text-white">Wizard World</a>
@@ -74,7 +74,7 @@
           </div>
           <div class="col-10 d-flex flex-wrap justify-content-center">
             <div
-              id="cards-div"
+              
               v-for="personaje in personajes"
               class="card container text-center mb-2 mt-2"
               style="width: 18rem"
@@ -87,7 +87,7 @@
               <div class="card-body">
                 <h5 class="card-title">{{personaje.name}}</h5>
                 <p class="card-text">{{personaje.ancestry}}</p>
-                <button
+                <button @click="mostrarModal(personaje)"
                   type="button"
                   class="btn btn-dark"
                   data-bs-toggle="modal"
@@ -103,7 +103,7 @@
 
         <!-- Modal -->
         <div
-          v-for="dataPersonaje in dataApiHarry"
+          v-for ="dataPersonaje in personajeAMostrar"
           class="modal fade"
           id="staticBackdrop"
           data-bs-backdrop="static"
@@ -119,7 +119,7 @@
                   class="modal-title col-11 text-center nombre-personaje"
                   id="staticBackdropLabel"
                 >
-                  <i class="fas fa-user"></i> {{ dataPersonaje.name }}
+                  <i class="fas fa-user"></i> {{ mostrarModal ? mostrarModal.name : '' }}
                 </h1>
                 <button
                   type="button"
@@ -139,36 +139,36 @@
                 <div>
                   <p class="fs-4">
                     <strong><i class="fas fa-home"></i> House:</strong>
-                    {{ dataPersonaje.house }}
+                    {{ mostrarModal ? mostrarModal.house : '' }}
                   </p>
                   <p class="fs-4">
                     <strong><i class="fas fa-hat-wizard"></i> Wizard:</strong>
-                    {{ dataPersonaje.wizard }}
+                    {{ mostrarModal ? mostrarModal.wizard : '' }}
                   </p>
                   <p class="fs-4">
                     <strong><i class="fas fa-dragon"></i> Species:</strong>
-                    {{ dataPersonaje.species }}
+                    {{ mostrarModal ? mostrarModal.species : '' }}
                   </p>
                   <p class="fs-4">
                     <strong><i class="fas fa-history"></i> Ancestry:</strong>
-                    {{ dataPersonaje.ancestry }}
+                    {{ mostrarModal ? mostrarModal.ancestry : '' }}
                   </p>
                   <p class="fs-4">
                     <strong
                       ><i class="fa-solid fa-wand-magic-sparkles"></i>
                       Patronus:</strong
                     >
-                    {{ dataPersonaje.patronus }}
+                    {{ mostrarModal ? mostrarModal.patronus : '' }}
                   </p>
                   <p class="fs-4">
                     <strong
                       ><i class="fa-solid fa-wand-magic"></i> Wand:</strong
                     >
-                    {{ dataPersonaje.wand.wood }}
+                    {{ mostrarModal ? (mostrarModal.wand ? mostrarModal.wand.wood : '') : '' }}
                   </p>
                   <p class="fs-4">
                     <strong><i class="fas fa-user-tie"></i> Actor:</strong>
-                    {{ dataPersonaje.actor }}
+                    {{ mostrarModal ? mostrarModal.actor : '' }}
                   </p>
                 </div>
               </div>
