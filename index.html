@@ -28,12 +28,12 @@
         <div class="row">
           <div class="col-2">
             <div>
-              <h2>Filtro por casas</h2>
+              <h4>Filtro por Casas</h4>
               {{filtro}}
-              <div v-for="casa in categoriasCasas" class="d-flex flex-column flex-wrap form-check form-check-inline">
+              <div v-for="casa in categoriasCasas" class="d-flex form-check-inline">
                 <input v-model="categoriasSeleccionadas" class="form-check-input" type="checkbox" :id="casa"
                   :value="casa" />
-                <label class="form-check-label text-black" :for="casa">{{casa}}</label>
+                <label class="form-check-label text-black ms-3" :for="casa">{{casa}}</label>
               </div>
             </div>
             <div class="row">FILTRO POR LINAJE</div>

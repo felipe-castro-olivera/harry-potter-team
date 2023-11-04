@@ -16,9 +16,6 @@ const { createApp } = Vue;
     
           };
         },
-        mounted(){
-
-        },
         created(){
             this.dataHarry(urlAPI)
 
