@@ -10,7 +10,7 @@ nav {
 
 section {
   display: flex;
-  min-width: 100vw;
+  width: 100vw;
   height: 40vh;
   background-color: black;
 }
@@ -26,7 +26,7 @@ section img {
 section img:hover {
   cursor: crosshair;
   object-fit: cover;
-  width: 20vw;
+  width: 10vw;
   position: top center;
   opacity: 1;
   filter: contrast(120%);
