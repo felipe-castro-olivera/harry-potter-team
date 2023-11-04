@@ -9,11 +9,13 @@ createApp({
       personajes: null,
       personajesBkp: [],
       categoriasCasas: [],
+      categoriasLinaje: [],
       categoriasSeleccionadas: [],
       buscador: "",
       personajeAMostrar: null,
       dataApiHarry: null,
       urlImagen: "https://placehold.co/300x400?text=Sin+foto",
+      
     };
   },
   created() {
@@ -32,11 +34,15 @@ createApp({
               this.personajes.map((personaje) => personaje.house).splice(4, 4)
             )
           );
+          this.categoriasLinaje = Array.from(
+            new Set(
+              this.personajes.map((personaje) => personaje.ancestry.toUpperCase())))
         });
+       
     },
   },
   computed: {
-    filtro(personaje) {
+    filtroCasas(personaje) {
       let filtrobuscador = this.personajesBkp.filter((personaje) =>
         personaje.name.toLowerCase().includes(this.buscador.toLowerCase())
       );
@@ -49,5 +55,7 @@ createApp({
         );
       }
     },
+
+
   },
 }).mount("#app");

@@ -45,14 +45,20 @@
           <div class="row col-2">
             <div>
               <h4>Filtro por casas</h4>
-              {{filtro}}
+              {{filtroCasas}}
               <div v-for="casa in categoriasCasas" class="d-flex form-check-inline">
                 <input v-model="categoriasSeleccionadas" class="form-check-input" type="checkbox" :id="casa"
                   :value="casa" />
                 <label class="form-check-label text-black ms-3" :for="casa">{{casa}}</label>
               </div>
             </div>
-            <div class="row">FILTRO POR LINAJE</div>
+            <h4>Filtro por Linaje</h4>
+            <div class="row">
+              <div v-for="ancestro in categoriasLinaje" class="form-check form-switch d-flex align-items-start form-check-inline">
+                <input class="form-check-input d-flex align-items-start " type="checkbox" role="switch" :id="ancestro" :value="ancestro">
+                <label class="form-check-label d-flex align-items-start" :for="ancestro">{{ancestro}}</label>
+              </div>
+            </div>
             <div class="row">AUTORES - FELIPE</div>
           </div>
           <div class="col-10 d-flex flex-wrap">
