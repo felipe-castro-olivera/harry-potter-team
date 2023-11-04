@@ -25,47 +25,31 @@
     <main class="container-fluid">
       <section>CAROUSEL - ASTRID/RICARDO</section>
       <div class="container-fluid text-center">
-        <div class="row col-2">
-
-          <div>
-            {{filtro}}
-
-
-            <div v-for="casa in categoriasCasas" class="column form-check form-check-inline ">
-              <input v-model="categoriasSeleccionadas" class="form-check-input" type="checkbox" :id="casa"
-                :value="casa">
-              <label class="form-check-label text-black" :for="casa">{{casa}}</label>
+        <div class="row">
+          <div class="col-2">
+            <div>
+              <h2>Filtro por casas</h2>
+              {{filtro}}
+              <div v-for="casa in categoriasCasas" class="d-flex flex-column flex-wrap form-check form-check-inline">
+                <input v-model="categoriasSeleccionadas" class="form-check-input" type="checkbox" :id="casa"
+                  :value="casa" />
+                <label class="form-check-label text-black" :for="casa">{{casa}}</label>
+              </div>
             </div>
-
-
-            <div class="column input-group">
-              <div class="input-group-text"><i><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-                    fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
-                    <path
-                      d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z" />
-                  </svg></i></div>
-              <input type="text" class="form-control" id="inlineFormInputGroupUsername" placeholder="Search">
-            </div>
+            <div class="row">FILTRO POR LINAJE</div>
+            <div class="row">AUTORES - FELIPE</div>
           </div>
-
-          <div class="row">AUTORES - FELIPE</div>
-        </div>
-        <div class="col-10  d-flex flex-wrap">
-
-
-
-          <div v-for="personaje in personajes" class="card  container text-center" style="width: 18rem;">
-            <img :src="personaje.image ? personaje.image : urlImagen" class="card-img-top" alt="...">
-            <div class="card-body">
-              <h5 class="card-title">{{personaje.name}}</h5>
-              <p class="card-text">{{personaje.ancestry}}</p>
-              <a href="#" class="btn btn-primary">Go somewhere</a>
+          <div class="col-10 d-flex flex-wrap">
+            <div v-for="personaje in personajes" class="card container text-center" style="width: 18rem">
+              <img :src="personaje.image ? personaje.image : urlImagen" class="card-img-top" alt="..." />
+              <div class="card-body">
+                <h5 class="card-title">{{personaje.name}}</h5>
+                <p class="card-text">{{personaje.ancestry}}</p>
+                <a href="#" class="btn btn-primary">Go somewhere</a>
+              </div>
             </div>
           </div>
         </div>
-
-
-
       </div>
       <!-- Button trigger modal -->
       <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
