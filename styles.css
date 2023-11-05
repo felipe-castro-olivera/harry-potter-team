@@ -19,3 +19,10 @@
 .fondoPersonaje {
     background-image: url(https://img.freepik.com/fotos-premium/fondo-textura-papel-pergamino-antiguo-fondo-pantalla-vintage_765582-522.jpg);
 }
+
+#cards-div {
+    background-image: url(./img/cardTexture3.webp);
+    background-size: contain;
+}
+
+

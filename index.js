@@ -11,11 +11,13 @@ createApp({
       categoriasCasas: [],
       categoriasLinaje: [],
       categoriasSeleccionadas: [],
+      linajeSeleccionado: [],
       buscador: "",
+      buscador2: "",
       personajeAMostrar: null,
       dataApiHarry: null,
       urlImagen: "https://placehold.co/300x400?text=Sin+foto",
-      
+
     };
   },
   created() {
@@ -26,6 +28,7 @@ createApp({
       fetch(url)
         .then((response) => response.json())
         .then((data) => {
+          console.log(data[0].ancestry);
           this.dataApiHarry = data.map((personaje) => personaje);
           this.personajes = data;
           this.personajesBkp = data;
@@ -33,18 +36,17 @@ createApp({
             new Set(
               this.personajes.map((personaje) => personaje.house).splice(4, 4)
             )
-          );
-          this.categoriasLinaje = Array.from(
-            new Set(
-              this.personajes.map((personaje) => personaje.ancestry.toUpperCase())))
-        });
-       
+          ); console.log(this.categoriasCasas);
+          this.categoriasLinaje = new Set(data.map((personaje) => personaje.ancestry.toUpperCase()))
+        }); console.log(this.categoriasLinaje);
+
+
     },
   },
   computed: {
     filtroCasas(personaje) {
       let filtrobuscador = this.personajesBkp.filter((personaje) =>
-        personaje.name.toLowerCase().includes(this.buscador.toLowerCase())
+        personaje.name.includes(this.buscador.toLowerCase())
       );
 
       if (this.categoriasSeleccionadas.length == 0) {
@@ -55,7 +57,18 @@ createApp({
         );
       }
     },
+    filtroLinaje() {
+        let filtrobuscador2 = this.personajesBkp.filter((personaje) =>
+        personaje.ancestry.includes(this.buscador2.toUpperCase())
+      );
 
+      if (this.linajeSeleccionado.length == 0) {
+        this.personajes = filtrobuscador2;
+      } else {
+        this.personajes = filtrobuscador2.filter((personaje) =>
+          this.linajeSeleccionado.includes(personaje.ancestry))
+      }
 
+    }
   },
 }).mount("#app");
