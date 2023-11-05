@@ -19,14 +19,14 @@
         <div class="container-fluid">
           <a class="navbar-brand text-white">Wizard World</a>
           <form class="d-flex" role="search">
-            <input class="form-control me-2 search" type="search" placeholder="Search" aria-label="Search"
-              id="buscador" />
+            <input v-model="buscador" class="form-control me-2 search" type="search" placeholder="Search"
+              aria-label="Search" id="buscador" />
             <button class="btn btn-outline-info" type="submit">Buscar</button>
           </form>
         </div>
       </nav>
     </header>
-    <main class="">
+    <main>
       <section class="d-flex justify-content-center">
         <img src="./img/P5_Harry_Potter.webp" alt="" />
         <img src="./img/Hermione_Granger_poster.jpg" alt="" />
@@ -48,27 +48,25 @@
             <div>
               <div>
                 {{filtroCasas}}
-                <h4>Filtro por casas</h4> 
+                <h4>Filtro por casas</h4>
 
-                <div v-for="casa in categoriasCasas" class="d-flex form-check-inline">
+                <div v-for="casa in categoriasCasas" class="d-flex form-check-inline ms-3">
                   <input v-model="categoriasSeleccionadas" class="form-check-input" type="checkbox" :id="casa"
                     :value="casa" />
-                  <label class="form-check-label text-black ms-3" :for="casa">{{casa}}</label>
+                  <label class="form-check-label text-black ms-4" :for="casa">{{casa}}</label>
                 </div>
               </div>
               <div>
                 {{ filtroLinaje}}
-                
-                <h4>Filtro por Linaje</h4> 
-                <div class="row">
-                  <div v-for="ancestry in categoriasLinaje"
-                    class="form-check form-switch d-flex align-items-start form-check-inline">
-                    <input v-model="linajeSeleccionado" class="form-check-input d-flex " type="checkbox" role="switch" :id="ancestry"
-                      :value="ancestry"/>
-                    <label class="form-check-label" :for="ancestry">{{ancestry === "" ? "no-info" : ancestry}}</label>
-                  </div>
+                <h4>Filtro por Linaje</h4>
+                <div v-for="ancestry in categoriasLinaje"
+                  class="form-check form-switch d-flex align-items-start form-check-inline ms-2">
+                  <input v-model="linajeSeleccionado" class="form-check-input d-flex " type="checkbox" role="switch"
+                    :id="ancestry" :value="ancestry" />
+                  <label class="form-check-label ms-md-3 " :for="ancestry">{{ancestry === "" ? "no-info" : ancestry}}</label>
                 </div>
-              </div>  
+
+              </div>
             </div>
             <div class="row">AUTORES - FELIPE</div>
           </div>
@@ -89,8 +87,8 @@
   </div>
 
   <!-- Modal -->
-  <div  class="modal fade" id="staticBackdrop" data-bs-backdrop="static"
-    data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+    aria-labelledby="staticBackdropLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-scrollable">
       <div class="modal-content text-c fondoPersonaje">
         <div class="modal-header">
