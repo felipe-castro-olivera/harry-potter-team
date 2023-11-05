@@ -19,7 +19,7 @@ createApp({
   },
   created() {
     this.dataHarry(urlAPI);
-    
+    this.mostrarModal(this.personajeAMostrar)
     
   },
   methods: {

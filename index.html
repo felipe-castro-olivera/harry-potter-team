@@ -103,7 +103,7 @@
 
         <!-- Modal -->
         <div
-          v-for ="dataPersonaje in personajeAMostrar"
+          
           class="modal fade"
           id="staticBackdrop"
           data-bs-backdrop="static"
@@ -119,7 +119,7 @@
                   class="modal-title col-11 text-center nombre-personaje"
                   id="staticBackdropLabel"
                 >
-                  <i class="fas fa-user"></i> {{ mostrarModal ? mostrarModal.name : '' }}
+                  <i class="fas fa-user"></i> {{ personajeAMostrar ? personajeAMostrar.name : '' }}
                 </h1>
                 <button
                   type="button"
@@ -128,47 +128,47 @@
                   aria-label="Close"
                 ></button>
               </div>
-              <div class="modal-body d-flex gap-5 imagenPersonaje">
+              <div class="modal-body d-flex gap-5 imagenPersonaje" v-if="personajeAMostrar">
                 <div class="img-fluid rounded mx-auto d-block">
                   <img
                     class="img-fluid rounded mx-auto d-block"
-                    :src="dataPersonaje.image"
+                    :src="personajeAMostrar.image || urlImagen"
                     alt=""
                   />
                 </div>
                 <div>
                   <p class="fs-4">
                     <strong><i class="fas fa-home"></i> House:</strong>
-                    {{ mostrarModal ? mostrarModal.house : '' }}
+                    {{ personajeAMostrar ? personajeAMostrar.house : '' }}
                   </p>
                   <p class="fs-4">
                     <strong><i class="fas fa-hat-wizard"></i> Wizard:</strong>
-                    {{ mostrarModal ? mostrarModal.wizard : '' }}
+                    {{ personajeAMostrar ? personajeAMostrar.wizard : '' }}
                   </p>
                   <p class="fs-4">
                     <strong><i class="fas fa-dragon"></i> Species:</strong>
-                    {{ mostrarModal ? mostrarModal.species : '' }}
+                    {{ personajeAMostrar ? personajeAMostrar.species : '' }}
                   </p>
                   <p class="fs-4">
                     <strong><i class="fas fa-history"></i> Ancestry:</strong>
-                    {{ mostrarModal ? mostrarModal.ancestry : '' }}
+                    {{ personajeAMostrar ? personajeAMostrar.ancestry : '' }}
                   </p>
                   <p class="fs-4">
                     <strong
                       ><i class="fa-solid fa-wand-magic-sparkles"></i>
                       Patronus:</strong
                     >
-                    {{ mostrarModal ? mostrarModal.patronus : '' }}
+                    {{ personajeAMostrar ? personajeAMostrar.patronus : '' }}
                   </p>
                   <p class="fs-4">
                     <strong
                       ><i class="fa-solid fa-wand-magic"></i> Wand:</strong
                     >
-                    {{ mostrarModal ? (mostrarModal.wand ? mostrarModal.wand.wood : '') : '' }}
+                    {{ personajeAMostrar ? personajeAMostrar.wand.wood : '' }}
                   </p>
                   <p class="fs-4">
                     <strong><i class="fas fa-user-tie"></i> Actor:</strong>
-                    {{ mostrarModal ? mostrarModal.actor : '' }}
+                    {{ personajeAMostrar ? personajeAMostrar.actor : '' }}
                   </p>
                 </div>
               </div>
