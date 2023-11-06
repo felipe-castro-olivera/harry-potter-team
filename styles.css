@@ -25,14 +25,14 @@
     background-size: contain;
 }
  .card .img {
-    border-radius: 50%;
-    object-fit: cover;
-    width: 200px;
-    height: 300px;
+    /* border-radius: 50%; */
+    object-fit: middle;
+    width: 265px;
+    height: 250px;
    align-self: center;
  }
 
 .card-img-top {
-  clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+    clip-path: polygon(50% 0%, 100% 30%, 80% 100%, 20% 100%, 0% 30%);
 }
 
