@@ -20,7 +20,7 @@
       <header>
         <nav class="navbar bg-black">
           <div class="container-fluid">
-            <a class="navbar-brand text-white">Wizard World</a>
+            <a class="navbar-brand text-white"><img src="./img/hp-logo2.png" alt=""></a>
             <form class="d-flex" role="search">
               <input
                 class="form-control me-2 search"
@@ -79,7 +79,7 @@
               class="card container text-center mb-2 mt-2"
               style="width: 18rem"
             >
-              <img id="hexagon"
+              <img 
                 :src="personaje.image ? personaje.image : urlImagen"
                 class="card-img-top"
                 alt="..."
@@ -100,6 +100,8 @@
             </div>
           </div>
         </div>
+
+        <button @click="showNextPage">Mostrar más cartas</button>
 
         <!-- Modal -->
         <div

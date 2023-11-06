@@ -1,6 +1,9 @@
 const urlAPI = "https://hp-api.onrender.com/api/characters";
 
 const { createApp } = Vue;
+let page = 0;
+let hasMore = false;
+let isLoading = false;
 
 createApp({
   data() {
