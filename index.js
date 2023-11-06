@@ -19,7 +19,6 @@ createApp({
       personajeAMostrar: null,
       dataApiHarry: null,
       urlImagen: "https://placehold.co/300x400?text=Sin+foto",
-
     };
   },
   created() {
@@ -36,9 +35,15 @@ createApp({
           this.categoriasCasas = Array.from(
             new Set(
               this.personajes.map((personaje) => personaje.house).splice(4, 4)
-            ));
-          this.categoriasLinaje = new Set(data.map((personaje) => personaje.ancestry))
+            )
+          );
+          this.categoriasLinaje = new Set(
+            data.map((personaje) => personaje.ancestry)
+          );
         });
+    },
+    mostrarModal(personaje) {
+      this.personajeAMostrar = personaje;
     },
   },
   computed: {
@@ -68,7 +73,6 @@ createApp({
           this.linajeSeleccionado.includes(personaje.ancestry)
         );
       }
-
-    }
+    },
   },
 }).mount("#app");
