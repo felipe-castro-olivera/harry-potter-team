@@ -15,12 +15,16 @@ createApp({
       personajeAMostrar: null,
       dataApiHarry: null,
       urlImagen: "https://placehold.co/300x400?text=Sin+foto",
+      favoritos: [],
     };
   },
   created() {
     this.dataHarry(urlAPI);
-    this.mostrarModal(this.personajeAMostrar)
-    
+    this.mostrarModal(this.personajeAMostrar);
+    let favoritosGuardados = JSON.parse(localStorage.getItem("favoritos"))
+    if (favoritosGuardados) {
+      this.favoritos = favoritosGuardados;
+    }
   },
   methods: {
     dataHarry(url) {
@@ -40,8 +44,22 @@ createApp({
     mostrarModal(personaje) {
       this.personajeAMostrar = personaje;
     },
+    agregarFavorito(personaje) {
+      if (this.favoritos.includes (personaje)) {
+        console.log("ya existe")} else{ 
+          this.favoritos.push(personaje)
+          localStorage.setItem("favoritos", JSON.stringify(this.favoritos));
+        };
+      },
+      eliminarFavorito(personaje) {
+        const index = this.favoritos.findIndex((pers) => pers.id == personaje.id);
+        if (index !== -1) {
+          this.favoritos.splice(index, 1); 
+          localStorage.setItem("favoritos", JSON.stringify(this.favoritos));
+        }
+    },
+    
       
- 
   },
   computed: {
     filtro(personaje) {
@@ -56,6 +74,6 @@ createApp({
           this.categoriasSeleccionadas.includes(personaje.house)
         );
       }
-    },
+    },  
   },
-}).mount("#app");
+}).mount("#app")
