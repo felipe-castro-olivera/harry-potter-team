@@ -38,7 +38,7 @@ createApp({
             )
           );
           this.categoriasLinaje = new Set(
-            data.map((personaje) => personaje.ancestry)
+            data.map((personaje) => personaje.ancestry.replace("-"," "))
           );
         });
     },
@@ -70,7 +70,7 @@ createApp({
         this.personajes = filtrobuscador2;
       } else {
         this.personajes = filtrobuscador2.filter((personaje) =>
-          this.linajeSeleccionado.includes(personaje.ancestry)
+          this.linajeSeleccionado.includes(personaje.ancestry.replace("-"," "))
         );
       }
     },
