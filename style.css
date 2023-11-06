@@ -27,4 +27,13 @@ section img:hover {
   opacity: 1;
   filter: contrast(120%);
 }
+<<<<<<< HEAD
 
+=======
+#filtro-casas{
+  background-color: rgb(97, 56, 17);
+}
+#filtro-linaje{
+  background-color: rgb(198, 113, 57);
+}
+>>>>>>> af5dc704cc1bc7908bd36b7e97220011e107f58c
