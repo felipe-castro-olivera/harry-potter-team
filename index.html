@@ -20,7 +20,9 @@
       <header>
         <nav class="navbar bg-black">
           <div class="container-fluid">
-            <a class="navbar-brand text-white"><img src="./img/hp-logo2.png" alt=""></a>
+            <a class="navbar-brand text-white"
+              ><img src="./img/hp-logo2.png" alt=""
+            /></a>
             <form class="d-flex" role="search">
               <input
                 class="form-control me-2 search"
@@ -50,62 +52,108 @@
 
         <div id="mainDiv" class="container-fluid text-center">
           <div class="row">
-          <div class="row col-2">
-            <div>
-              {{filtro}}
+            <div class="row col-2">
+              <div>
+                <div
+                  id="filtro-casas"
+                  class="p-4 d-flex flex-column justify-content-around"
+                >
+                  {{filtroCasas}}
+                  <h4>Filtro por casas</h4>
+
+                  <div
+                    v-for="casa in categoriasCasas"
+                    class="d-flex form-check-inline ms-3"
+                  >
+                    <input
+                      v-model="categoriasSeleccionadas"
+                      class="form-check-input"
+                      type="checkbox"
+                      :id="casa"
+                      :value="casa"
+                    />
+                    <label class="form-check-label text-white ms-4" :for="casa"
+                      >{{casa}}</label
+                    >
+                  </div>
+                </div>
+                <div
+                  id="filtro-linaje"
+                  class="p-4 d-flex flex-column justify-content-around"
+                >
+                  {{ filtroLinaje}}
+                  <h4>Filtro por Linaje</h4>
+                  <div
+                    v-for="ancestry in categoriasLinaje"
+                    class="form-check form-switch d-flex align-items-start form-check-inline ms-2"
+                  >
+                    <input
+                      v-model="linajeSeleccionado"
+                      class="form-check-input d-flex"
+                      type="checkbox"
+                      role="switch"
+                      :id="ancestry"
+                      :value="ancestry"
+                    />
+                    <label
+                      class="form-check-label ms-md-3 text-white"
+                      :for="ancestry"
+                      >{{ancestry === "" ? "no-info" : ancestry}}</label
+                    >
+                  </div>
+                </div>
+              </div>
+              <div class="row">AUTORES - FELIPE</div>
+            </div>
+            <!-- cards -->
+
+            <div class="col-10 d-flex flex-wrap justify-content-center">
               <div
-                v-for="casa in categoriasCasas"
-                class="column form-check form-check-inline"
+                v-if="personajes.length == 0"
+                class="d-flex align-self-center fs-1"
               >
-                <input
-                  v-model="categoriasSeleccionadas"
-                  class="form-check-input"
-                  type="checkbox"
-                  :id="casa"
-                  :value="casa"
-                />
-                <label class="form-check-label text-black" :for="casa"
-                  >{{casa}}</label
-                >
+                <h2>Sorry, your search was not found</h2>
               </div>
-            </div>
-            <div class="row">FILTRO POR LINAJE</div>
-            <div class="row">AUTORES - FELIPE</div>
-          </div>
-          <div class="col-10 d-flex flex-wrap justify-content-center">
-            <div
-              id="cards-div"
-              v-for="personaje in personajes"
-              class="card container text-center mb-2 mt-2"
-              style="width: 18rem"
-            >
-              <img 
-                :src="personaje.image ? personaje.image : urlImagen"
-                class="card-img-top"
-                alt="..."
-              />
-              <div class="card-body">
-                <h5 class="card-title">{{personaje.name}}</h5>
-                <p class="card-text">{{personaje.ancestry}}</p>
-                <button
-                  type="button"
-                  class="btn btn-dark"
-                  data-bs-toggle="modal"
-                  data-bs-target="#staticBackdrop"
+              <div class="col-10 d-flex flex-wrap justify-content-center">
+                <div
+                  id="cards-div"
+                  v-for="personaje in personajes"
+                  class="card container text-center mb-2 mt-2"
+                  style="width: 18rem"
                 >
-                  More Information
-                </button>
+                  <div v-if="personaje.image">
+                    <img
+                      :src="personaje.image"
+                      class="card-img-top img"
+                      alt="..."
+                    />
+                  </div>
+
+                  <div class="card-body">
+                    <h5 class="card-title">{{personaje.name}}</h5>
+                    <p v-if="personaje.ancestry" class="card-text">
+                      <strong>Ancestry :</strong> {{personaje.ancestry}}
+                    </p>
+                    <p v-if="personaje.house" class="card-text">
+                      <strong>House :</strong> {{personaje.house}}
+                    </p>
+                    <button
+                    @click="mostrarModal(personaje)"
+                      type="button"
+                      class="btn btn-dark"
+                      data-bs-toggle="modal"
+                      data-bs-target="#staticBackdrop"
+                    >
+                      More Information
+                    </button>
+                  </div>
+                </div>
               </div>
-            </div>
             </div>
           </div>
         </div>
-
-        <button @click="showNextPage">Mostrar más cartas</button>
-
         <!-- Modal -->
         <div
-          v-for="dataPersonaje in dataApiHarry"
           class="modal fade"
           id="staticBackdrop"
           data-bs-backdrop="static"
@@ -121,7 +169,8 @@
                   class="modal-title col-11 text-center nombre-personaje"
                   id="staticBackdropLabel"
                 >
-                  <i class="fas fa-user"></i> {{ dataPersonaje.name }}
+                  <i class="fas fa-user"></i> {{ personajeAMostrar ?
+                  personajeAMostrar.name : '' }}
                 </h1>
                 <button
                   type="button"
@@ -130,17 +179,29 @@
                   aria-label="Close"
                 ></button>
               </div>
+<<<<<<< HEAD
               <div class="modal-body d-flex gap-5 imagenPersonaje">
                 <div class="img-fluid rounded mx-auto d-block">
                   <img
                     class="img-fluid rounded mx-auto d-block"
                     :src="dataPersonaje.image"
+=======
+              <div
+                class="modal-body d-flex gap-5 imagenPersonaje"
+                v-if="personajeAMostrar"
+              >
+                <div class="img-fluid rounded mx-auto d-block">
+                  <img
+                    class="img-fluid rounded mx-auto d-block"
+                    :src="personajeAMostrar.image || urlImagen"
+>>>>>>> af5dc704cc1bc7908bd36b7e97220011e107f58c
                     alt=""
                   />
                 </div>
                 <div>
                   <p class="fs-4">
                     <strong><i class="fas fa-home"></i> House:</strong>
+<<<<<<< HEAD
                     {{ dataPersonaje.house }}
                   </p>
                   <p class="fs-4">
@@ -154,23 +215,50 @@
                   <p class="fs-4">
                     <strong><i class="fas fa-history"></i> Ancestry:</strong>
                     {{ dataPersonaje.ancestry }}
+=======
+                    {{ personajeAMostrar ? personajeAMostrar.house : '' }}
+                  </p>
+                  <p class="fs-4">
+                    <strong><i class="fas fa-hat-wizard"></i> Wizard:</strong>
+                    {{ personajeAMostrar ? personajeAMostrar.wizard : '' }}
+                  </p>
+                  <p class="fs-4">
+                    <strong><i class="fas fa-dragon"></i> Species:</strong>
+                    {{ personajeAMostrar ? personajeAMostrar.species : '' }}
+                  </p>
+                  <p class="fs-4">
+                    <strong><i class="fas fa-history"></i> Ancestry:</strong>
+                    {{ personajeAMostrar ? personajeAMostrar.ancestry : '' }}
+>>>>>>> af5dc704cc1bc7908bd36b7e97220011e107f58c
                   </p>
                   <p class="fs-4">
                     <strong
                       ><i class="fa-solid fa-wand-magic-sparkles"></i>
                       Patronus:</strong
                     >
+<<<<<<< HEAD
                     {{ dataPersonaje.patronus }}
+=======
+                    {{ personajeAMostrar ? personajeAMostrar.patronus : '' }}
+>>>>>>> af5dc704cc1bc7908bd36b7e97220011e107f58c
                   </p>
                   <p class="fs-4">
                     <strong
                       ><i class="fa-solid fa-wand-magic"></i> Wand:</strong
                     >
+<<<<<<< HEAD
                     {{ dataPersonaje.wand.wood }}
                   </p>
                   <p class="fs-4">
                     <strong><i class="fas fa-user-tie"></i> Actor:</strong>
                     {{ dataPersonaje.actor }}
+=======
+                    {{ personajeAMostrar ? personajeAMostrar.wand.wood : '' }}
+                  </p>
+                  <p class="fs-4">
+                    <strong><i class="fas fa-user-tie"></i> Actor:</strong>
+                    {{ personajeAMostrar ? personajeAMostrar.actor : '' }}
+>>>>>>> af5dc704cc1bc7908bd36b7e97220011e107f58c
                   </p>
                 </div>
               </div>
@@ -188,6 +276,10 @@
         </div>
       </main>
     </div>
+<<<<<<< HEAD
+=======
+
+>>>>>>> af5dc704cc1bc7908bd36b7e97220011e107f58c
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
       integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
