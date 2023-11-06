@@ -114,28 +114,39 @@
               >
                 <h2>Sorry, your search was not found</h2>
               </div>
-              <div
-                v-for="personaje in personajes"
-                class="card container text-center"
-                style="width: 18rem"
-              >
-                <img
-                  :src="personaje.image ? personaje.image : urlImagen"
-                  class="card-img-top"
-                  alt="..."
-                />
-                <div class="card-body">
-                  <h5 class="card-title">{{personaje.name}}</h5>
-                  <p class="card-text">{{personaje.ancestry}}</p>
-                  <button
-                    type="button"
-                    class="btn btn-dark"
-                    data-bs-toggle="modal"
-                    data-bs-target="#staticBackdrop"
+              <div class="col-10 d-flex flex-wrap justify-content-center">
+                <div
+                  id="cards-div"
+                  v-for="personaje in personajes"
+                  class="card container text-center mb-2 mt-2"
+                  style="width: 18rem"
+                >
+                  <div v-if="personaje.image">
+                    <img
+                      :src="personaje.image"
+                      class="card-img-top img"
+                      alt="..."
+                    />
+                  </div>
+
+                  <div class="card-body">
+                    <h5 class="card-title">{{personaje.name}}</h5>
+                    <p v-if="personaje.ancestry" class="card-text">
+                      <strong>Ancestry :</strong> {{personaje.ancestry}}
+                    </p>
+                    <p v-if="personaje.house" class="card-text">
+                      <strong>House :</strong> {{personaje.house}}
+                    </p>
+                    <button
                     @click="mostrarModal(personaje)"
-                  >
-                    More Information
-                  </button>
+                      type="button"
+                      class="btn btn-dark"
+                      data-bs-toggle="modal"
+                      data-bs-target="#staticBackdrop"
+                    >
+                      More Information
+                    </button>
+                  </div>
                 </div>
               </div>
             </div>
