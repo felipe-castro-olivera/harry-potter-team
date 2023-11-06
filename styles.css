@@ -24,5 +24,12 @@
     background-image: url(./img/cardTexture3.webp);
     background-size: contain;
 }
+ .card .img {
+    border-radius: 50%;
+    object-fit: cover;
+    width: 200px;
+    height: 300px;
+   align-self: center;
+ }
 
 
