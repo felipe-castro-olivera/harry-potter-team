@@ -46,31 +46,34 @@
 
           <div class="row col-2">
             <div>
-              <div>
+              <div id="filtro-casas" class="p-4 d-flex flex-column justify-content-around">
                 {{filtroCasas}}
                 <h4>Filtro por casas</h4>
 
                 <div v-for="casa in categoriasCasas" class="d-flex form-check-inline ms-3">
                   <input v-model="categoriasSeleccionadas" class="form-check-input" type="checkbox" :id="casa"
                     :value="casa" />
-                  <label class="form-check-label text-black ms-4" :for="casa">{{casa}}</label>
+                  <label class="form-check-label text-white ms-4" :for="casa">{{casa}}</label>
                 </div>
               </div>
-              <div>
+              <div id="filtro-linaje" class="p-4 d-flex flex-column justify-content-around">
                 {{ filtroLinaje}}
                 <h4>Filtro por Linaje</h4>
                 <div v-for="ancestry in categoriasLinaje"
                   class="form-check form-switch d-flex align-items-start form-check-inline ms-2">
                   <input v-model="linajeSeleccionado" class="form-check-input d-flex " type="checkbox" role="switch"
                     :id="ancestry" :value="ancestry" />
-                  <label class="form-check-label ms-md-3 " :for="ancestry">{{ancestry === "" ? "no-info" : ancestry}}</label>
+                  <label class="form-check-label ms-md-3 text-white " :for="ancestry">{{ancestry === "" ? "no-info" : ancestry}}</label>
                 </div>
 
               </div>
             </div>
             <div class="row">AUTORES - FELIPE</div>
           </div>
-          <div class="col-10 d-flex flex-wrap">
+          <div class="col-10 d-flex flex-wrap justify-content-center">
+            <div v-if="personajes.length == 0" class=" d-flex align-self-center fs-1">
+            <h2>Sorry, your search was not found</h2>
+          </div>
             <div v-for="personaje in personajes" class="card container text-center" style="width: 18rem">
               <img :src="personaje.image ? personaje.image : urlImagen" class="card-img-top" alt="..." />
               <div class="card-body">

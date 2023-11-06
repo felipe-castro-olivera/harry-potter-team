@@ -31,3 +31,9 @@ section img:hover {
   opacity: 1;
   filter: contrast(120%);
 }
+#filtro-casas{
+  background-color: rgb(97, 56, 17);
+}
+#filtro-linaje{
+  background-color: rgb(198, 113, 57);
+}
