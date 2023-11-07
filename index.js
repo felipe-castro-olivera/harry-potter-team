@@ -1,15 +1,13 @@
 const urlAPI = "https://hp-api.onrender.com/api/characters";
 
 const { createApp } = Vue;
-let page = 0;
-let hasMore = false;
-let isLoading = false;
 
 createApp({
   data() {
     return {
       message: "Hola Harry!",
       personajes: null,
+      personaje: null,
       personajesBkp: [],
       categoriasCasas: [],
       categoriasLinaje: [],
@@ -18,17 +16,23 @@ createApp({
       buscador: "",
       personajeAMostrar: null,
       dataApiHarry: null,
+      favoritos: [],
       urlImagen: "https://placehold.co/300x400?text=Sin+foto",
     };
   },
   created() {
     this.dataHarry(urlAPI);
+    let favoritosGuardados = JSON.parse(localStorage.getItem("favoritos"))
+    if (favoritosGuardados) {
+      this.favoritos = favoritosGuardados;
+    }
   },
   methods: {
     dataHarry(url) {
       fetch(url)
         .then((response) => response.json())
         .then((data) => {
+          console.log(data);
           this.dataApiHarry = data.map((personaje) => personaje);
           this.personajes = data;
           this.personajesBkp = data;
@@ -38,12 +42,27 @@ createApp({
             )
           );
           this.categoriasLinaje = new Set(
-            data.map((personaje) => personaje.ancestry.replace("-"," "))
+            data.map((personaje) => personaje.ancestry.replace("-", " "))
           );
         });
     },
+    
     mostrarModal(personaje) {
       this.personajeAMostrar = personaje;
+    },
+    agregarFavorito(personaje) {
+      if (this.favoritos.includes (personaje)) {
+        console.log("ya existe")} else{ 
+          this.favoritos.push(personaje)
+          localStorage.setItem("favoritos", JSON.stringify(this.favoritos));
+        };
+      },
+      eliminarFavorito(personaje) {
+        const index = this.favoritos.findIndex((pers) => pers.id == personaje.id);
+        if (index !== -1) {
+          this.favoritos.splice(index, 1); 
+          localStorage.setItem("favoritos", JSON.stringify(this.favoritos));
+        }
     },
   },
   computed: {
@@ -70,10 +89,9 @@ createApp({
         this.personajes = filtrobuscador2;
       } else {
         this.personajes = filtrobuscador2.filter((personaje) =>
-          this.linajeSeleccionado.includes(personaje.ancestry.replace("-"," "))
+          this.linajeSeleccionado.includes(personaje.ancestry.replace("-", " "))
         );
       }
     },
-    
   },
 }).mount("#app");
