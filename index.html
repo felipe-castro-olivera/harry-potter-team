@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Personajes de Harry Potter</title>
+    <title>HARRY POTTER LEGACY </title>
     <link rel="stylesheet" href="style.css" />
     <link rel="stylesheet" href="styles.css" />
     <link rel="shortcut icon" href="./icon/escudo2.png" type="image/x-icon" />
@@ -18,141 +18,289 @@
   <body>
     <div id="app">
       <header>
-        <nav class="navbar bg-black">
-          <div class="container-fluid">
-            <a class="navbar-brand text-white"
-              ><img src="./img/hp-logo2.png" alt=""
-            /></a>
-            <form class="d-flex" role="search">
-              <input
-                class="form-control me-2 search"
-                type="search"
-                placeholder="Search"
-                aria-label="Search"
-              />
-              <button class="btn btn-outline-info" type="submit">Buscar</button>
-            </form>
-          </div>
+        <nav
+          class="navbar bg-black d-flex justify-content-lg-between justify-content-md-between justify-content-center"
+        >
+          <a href="#"
+            ><img class="img-fluid" src="./img/hp-logo2.png" alt=""
+          /></a>
+          <form class="d-flex" role="search">
+            <input
+              v-model="buscador"
+              class="form-control me-2 search text-end"
+              type="search"
+              placeholder="Seach by name   🔍"
+              aria-label="Search"
+            />
+          </form>
         </nav>
       </header>
-      <main class="">
+      <main>
+        <!-- CAROUSEL -->
         <section class="d-flex justify-content-center">
-          <img src="./img/P5_Harry_Potter.webp" alt="" />
-          <img src="./img/Hermione_Granger_poster.jpg" alt="" />
-          <img src="./img/Ron_Weasley_poster.jpg" alt="" />
-          <img src="./img/malfoy.jpg" alt="" />
-          <img src="./img/voldemort.jpeg" alt="" />
           <img src="./img/Albus_Dumbledore.jpg" alt="" />
-          <img src="./img/snape.PNG" alt="" />
+          <img src="./img/voldemort.jpeg" alt="" />
           <img src="./img/remus-lupin-harry-potter.png" alt="" />
+          <img src="./img/malfoy.jpg" alt="" />
+          <img src="./img/Hermione_Granger_poster.jpg" alt="" />
+          <img src="./img/P5_Harry_Potter.webp" alt="" />
+          <img src="./img/Ron_Weasley_poster.jpg" alt="" />
+          <img src="./img/snape.PNG" alt="" />
           <img src="./img/hagrid.jpg" alt="" />
           <img src="./img/BellatrixLestrange.webp" alt="" />
           <img src="./img/Dobby_el_elfo.PNG.webp" alt="" />
         </section>
-
-        <div id="mainDiv" class="container-fluid text-center">
-          <div class="row">
-            <div class="row col-2">
-              <div>
+        <!-- FIN CAROUSEL -->
+        <!-- ESTRUCTURA -->
+        <div class="container-fluid">
+          <div class="row px-0">
+            <div
+              class="container-fluid col-12 col-md-3 col-lg-3 col-xl-2 px-0 containerCheckbox"
+            >
+              <div
+                class="d-sm-flex justify-content-sm-center d-lg-block d-md-block d-xl-block"
+              >
                 <div
                   id="filtro-casas"
-                  class="p-4 d-flex flex-column justify-content-around"
+                  class="py-2 px-2 d-flex flex-column justify-content-around"
                 >
                   {{filtroCasas}}
-                  <h4>Filtro por casas</h4>
-
-                  <div
-                    v-for="casa in categoriasCasas"
-                    class="d-flex form-check-inline ms-3"
-                  >
-                    <input
-                      v-model="categoriasSeleccionadas"
-                      class="form-check-input"
-                      type="checkbox"
-                      :id="casa"
-                      :value="casa"
-                    />
-                    <label class="form-check-label text-white ms-4" :for="casa"
-                      >{{casa}}</label
+                  <h4 class="text-black text-center nombre-personaje">
+                    Houses
+                  </h4>
+                  <div class="d-flex flex-wrap">
+                    <div
+                      v-for="casa in categoriasCasas"
+                      class="d-flex form-check-inline ms-3"
                     >
+                      <input
+                        v-model="categoriasSeleccionadas"
+                        class="form-check-input"
+                        type="checkbox"
+                        :id="casa"
+                        :value="casa"
+                      />
+                      <label
+                        class="form-check-label text-black ms-4"
+                        :for="casa"
+                        >{{casa}}</label
+                      >
+                    </div>
                   </div>
                 </div>
                 <div
                   id="filtro-linaje"
-                  class="p-4 d-flex flex-column justify-content-around"
+                  class="p-2 d-flex flex-column justify-content-around"
                 >
                   {{ filtroLinaje}}
-                  <h4>Filtro por Linaje</h4>
-                  <div
-                    v-for="ancestry in categoriasLinaje"
-                    class="form-check form-switch d-flex align-items-start form-check-inline ms-2"
-                  >
-                    <input
-                      v-model="linajeSeleccionado"
-                      class="form-check-input d-flex"
-                      type="checkbox"
-                      role="switch"
-                      :id="ancestry"
-                      :value="ancestry"
-                    />
-                    <label
-                      class="form-check-label ms-md-3 text-white"
-                      :for="ancestry"
-                      >{{ancestry === "" ? "no-info" : ancestry}}</label
+                  <h4 class="text-center nombre-personaje">Ancestry</h4>
+                  <div class="d-flex flex-wrap gap-sm-2">
+                    <div
+                      v-for="ancestry in categoriasLinaje"
+                      class="form-check form-switch d-flex align-items-start form-check-inline ms-2"
                     >
+                      <input
+                        v-model="linajeSeleccionado"
+                        class="form-check-input d-flex"
+                        type="checkbox"
+                        role="switch"
+                        :id="ancestry"
+                        :value="ancestry"
+                      />
+                      <label
+                        class="form-check-label ms-md-3 text-black"
+                        :for="ancestry"
+                        >{{ancestry === "" ? "no info" : ancestry}}</label
+                      >
+                    </div>
                   </div>
                 </div>
               </div>
-              <div class="row">AUTORES - FELIPE</div>
+              <div class="row"></div>
             </div>
-            <!-- cards -->
-
-            <div class="col-10 d-flex flex-wrap justify-content-center">
-              <div
-                v-if="personajes.length == 0"
-                class="d-flex align-self-center fs-1"
-              >
-                <h2>Sorry, your search was not found</h2>
-              </div>
-              <div class="col-10 d-flex flex-wrap justify-content-center">
-                <div
-                  id="cards-div"
-                  v-for="personaje in personajes"
-                  class="card container text-center mb-2 mt-2"
-                  style="width: 18rem"
-                >
-                  <div v-if="personaje.image">
+            <div class="col-12 col-md-9 col-lg-9 col-xl-10 bg-black">
+              <div class="container-fluid ps-0">
+                <div class="row mt-3">
+                  <!-- FAVORITOS -->
+                  <div
+                    v-if="favoritos.length > 0"
+                    class="d-flex flex-wrap col-12"
+                  >
+                    <h2 class="text-center w-100 nombre-personaje text-warning">
+                      Favorite
+                    </h2>
+                  </div>
+                  <div
+                    v-for=" personaje in favoritos"
+                    class="card container text-center mb-2 mt-2 cardGeneral border-5 bg-warning cardFavorito"
+                    style="width: 18rem"
+                  >
                     <img
-                      :src="personaje.image"
-                      class="card-img-top img"
+                      :src="personaje.image ? personaje.image : urlImagen"
+                      class="card-img-top imgFavorito"
                       alt="..."
                     />
-                  </div>
+                    <div class="card-body">
+                      <h5 class="card-title">{{personaje.name}}</h5>
 
-                  <div class="card-body">
-                    <h5 class="card-title">{{personaje.name}}</h5>
-                    <p v-if="personaje.ancestry" class="card-text">
-                      <strong>Ancestry :</strong> {{personaje.ancestry}}
-                    </p>
-                    <p v-if="personaje.house" class="card-text">
-                      <strong>House :</strong> {{personaje.house}}
-                    </p>
-                    <button
-                    @click="mostrarModal(personaje)"
-                      type="button"
-                      class="btn btn-dark"
-                      data-bs-toggle="modal"
-                      data-bs-target="#staticBackdrop"
-                    >
-                      More Information
-                    </button>
+                      <button
+                        @click="mostrarModal(personaje)"
+                        type="button"
+                        class="btn btn-dark"
+                        data-bs-toggle="modal"
+                        data-bs-target="#staticBackdrop"
+                      >
+                        More Information
+                      </button>
+                      <button @click="eliminarFavorito(personaje)" class="btn">
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          width="32"
+                          height="32"
+                          fill="currentColor"
+                          class="bi bi-bookmark-star-fill"
+                          viewBox="0 0 16 16"
+                        >
+                          <path
+                            fill-rule="evenodd"
+                            d="M2 15.5V2a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v13.5a.5.5 0 0 1-.74.439L8 13.069l-5.26 2.87A.5.5 0 0 1 2 15.5zM8.16 4.1a.178.178 0 0 0-.32 0l-.634 1.285a.178.178 0 0 1-.134.098l-1.42.206a.178.178 0 0 0-.098.303L6.58 6.993c.042.041.061.1.051.158L6.39 8.565a.178.178 0 0 0 .258.187l1.27-.668a.178.178 0 0 1 .165 0l1.27.668a.178.178 0 0 0 .257-.187L9.368 7.15a.178.178 0 0 1 .05-.158l1.028-1.001a.178.178 0 0 0-.098-.303l-1.42-.206a.178.178 0 0 1-.134-.098L8.16 4.1z"
+                          />
+                        </svg>
+                      </button>
+                    </div>
                   </div>
+                  <!-- FIN FAVORITOS -->
+                  <div
+                    class="cartas col-12 d-flex flex-wrap justify-content-center px-0"
+                  >
+                    <!-- CARD -->
+                    <div
+                      v-if="personajes.length == 0"
+                      class="d-flex align-self-center fs-1"
+                    >
+                      <h2 class="text-white">
+                        Sorry, your search was not found
+                      </h2>
+                    </div>
+                    <div
+                      id="mainDiv"
+                      class="container-fluid text-center bg-black"
+                    >
+                      <div id="carouselExampleControls" class="carousel slide">
+                        <div class="carousel-inner">
+                          <div
+                            class="carousel-item"
+                            v-for="(index, i) in Math.ceil(personajes.length / 3)"
+                            :key="i"
+                            :class="{active: i === 0}"
+                          >
+                            <div class="row justify-content-center">
+                              <div class="col-lg-10 col-md-12">
+                                <div class="row justify-content-center">
+                                  <!-- Aquí van las tarjetas para cada grupo de tres -->
+                                  <div
+                                    v-for="(personaje, j) in personajes.slice(i * 3, i * 3 + 3)"
+                                    :key="j"
+                                    class="col-lg-4 col-md-6 col-sm-12"
+                                  >
+                                    <div
+                                      class="card container text-center mb-2 mt-2 cardGeneral border-5"
+                                    >
+                                      <div>
+                                        <img
+                                          :src="personaje.image ? personaje.image : urlImagen"
+                                          class="card-img-top img img-fluid"
+                                          alt="..."
+                                        />
+                                      </div>
+                                      <div class="card-body">
+                                        <h5 class="card-title">
+                                          {{personaje.name}}
+                                        </h5>
+                                        <p class="card-text">
+                                          <strong>Ancestry :</strong>
+                                          {{personaje.ancestry === "" ?
+                                          'Unknown' : personaje.ancestry }}
+                                        </p>
+                                        <p class="card-text">
+                                          <strong>House :</strong>
+                                          {{personaje.house === "" ? 'Unknown' :
+                                          personaje.house }}
+                                        </p>
+                                        <button
+                                          @click="mostrarModal(personaje)"
+                                          type="button"
+                                          class="btn btn-dark"
+                                          data-bs-toggle="modal"
+                                          data-bs-target="#staticBackdrop"
+                                        >
+                                          More Information
+                                        </button>
+                                        <!-- Botón de favoritos -->
+                                        <button
+                                          @click="agregarFavorito(personaje)"
+                                          class="btn"
+                                        >
+                                          <svg
+                                            xmlns="http://www.w3.org/2000/svg"
+                                            width="32"
+                                            height="32"
+                                            fill="currentColor"
+                                            class="bi bi-bookmark-star-fill"
+                                            viewBox="0 0 16 16"
+                                          >
+                                            <path
+                                              fill-rule="evenodd"
+                                              d="M2 15.5V2a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v13.5a.5.5 0 0 1-.74.439L8 13.069l-5.26 2.87A.5.5 0 0 1 2 15.5zM8.16 4.1a.178.178 0 0 0-.32 0l-.634 1.285a.178.178 0 0 1-.134.098l-1.42.206a.178.178 0 0 0-.098.303L6.58 6.993c.042.041.061.1.051.158L6.39 8.565a.178.178 0 0 0 .258.187l1.27-.668a.178.178 0 0 1 .165 0l1.27.668a.178.178 0 0 0 .257-.187L9.368 7.15a.178.178 0 0 1 .05-.158l1.028-1.001a.178.178 0 0 0-.098-.303l-1.42-.206a.178.178 0 0 1-.134-.098L8.16 4.1z"
+                                            />
+                                          </svg>
+                                        </button>
+                                        <!-- Fin del botón de favoritos -->
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <button
+                          class="carousel-control-prev"
+                          type="button"
+                          data-bs-target="#carouselExampleControls"
+                          data-bs-slide="prev"
+                        >
+                          <span
+                            class="carousel-control-prev-icon me-5"
+                            aria-hidden="true"
+                          ></span>
+                          <span class="visually-hidden">Previous</span>
+                        </button>
+                        <button
+                          class="carousel-control-next"
+                          type="button"
+                          data-bs-target="#carouselExampleControls"
+                          data-bs-slide="next"
+                        >
+                          <span
+                            class="carousel-control-next-icon ms-5"
+                            aria-hidden="true"
+                          ></span>
+                          <span class="visually-hidden">Next</span>
+                        </button>
+                      </div>
+                    </div>
+
+                    <!-- FIN CARD -->
+                  </div>
+                  <div class="col-1"></div>
                 </div>
               </div>
             </div>
           </div>
         </div>
-        <!-- Modal -->
+        <!-- FIN ESTRUCTURA -->
+        <!-- MODAL -->
         <div
           class="modal fade"
           id="staticBackdrop"
@@ -162,7 +310,7 @@
           aria-labelledby="staticBackdropLabel"
           aria-hidden="true"
         >
-          <div class="modal-dialog modal-dialog-scrollable">
+          <div class="modal-dialog modal-lg">
             <div class="modal-content text-c fondoPersonaje">
               <div class="modal-header">
                 <h1
@@ -185,7 +333,7 @@
               >
                 <div class="img-fluid rounded mx-auto d-block">
                   <img
-                    class="img-fluid rounded mx-auto d-block"
+                    class="img-fluid rounded mx-auto d-block imagenModal"
                     :src="personajeAMostrar.image || urlImagen"
                     alt=""
                   />
@@ -238,6 +386,7 @@
             </div>
           </div>
         </div>
+        <!-- FIN MODAL -->
       </main>
     </div>
 
@@ -246,6 +395,10 @@
       integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
       crossorigin="anonymous"
     ></script>
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+      rel="stylesheet"
+    />
     <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
     <script src="./index.js" type="module"></script>
   </body>
