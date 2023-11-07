@@ -14,7 +14,7 @@
       crossorigin="anonymous"
     />
   </head>
- 
+
   <body>
     <div id="app">
       <header>
@@ -31,31 +31,44 @@
                 placeholder="Search by name"
                 aria-label="Search"
               />
-              <button class="btn btn-outline-light" type="submit"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
-                <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
-              </svg></button>
+              <button class="btn btn-outline-light" type="submit">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="16"
+                  height="16"
+                  fill="currentColor"
+                  class="bi bi-search"
+                  viewBox="0 0 16 16"
+                >
+                  <path
+                    d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"
+                  />
+                </svg>
+              </button>
             </form>
           </div>
         </nav>
       </header>
-      <main class="">
-        <!-- estructura -->
-        <div class="d-flex flex-column col-12" id="padre">
-          <section class="d-flex justify-content-center">
-            <img src="./img/Albus_Dumbledore.jpg" alt="" />
-            <img src="./img/voldemort.jpeg" alt="" />
-            <img src="./img/remus-lupin-harry-potter.png" alt="" />
-            <img src="./img/malfoy.jpg" alt="" />
-            <img src="./img/Hermione_Granger_poster.jpg" alt="" />
-            <img src="./img/P5_Harry_Potter.webp" alt="" />
-            <img src="./img/Ron_Weasley_poster.jpg" alt="" />
-            <img src="./img/snape.PNG" alt="" />
-            <img src="./img/hagrid.jpg" alt="" />
-            <img src="./img/BellatrixLestrange.webp" alt="" />
-            <img src="./img/Dobby_el_elfo.PNG.webp" alt="" />
-          </section>
-          <div class="row">
-            <div class="col-2 p-0">
+      <main>
+        <!-- CAROUSEL -->
+        <section class="d-flex justify-content-center">
+          <img src="./img/Albus_Dumbledore.jpg" alt="" />
+          <img src="./img/voldemort.jpeg" alt="" />
+          <img src="./img/remus-lupin-harry-potter.png" alt="" />
+          <img src="./img/malfoy.jpg" alt="" />
+          <img src="./img/Hermione_Granger_poster.jpg" alt="" />
+          <img src="./img/P5_Harry_Potter.webp" alt="" />
+          <img src="./img/Ron_Weasley_poster.jpg" alt="" />
+          <img src="./img/snape.PNG" alt="" />
+          <img src="./img/hagrid.jpg" alt="" />
+          <img src="./img/BellatrixLestrange.webp" alt="" />
+          <img src="./img/Dobby_el_elfo.PNG.webp" alt="" />
+        </section>
+        <!-- FIN CAROUSEL -->
+        <!-- ESTRUCTURA -->
+        <div class="container-fluid">
+          <div class="row px-0">
+            <div class="col-2 ps-0">
               <div>
                 <div
                   id="filtro-casas"
@@ -108,80 +121,144 @@
               </div>
               <div class="row">AUTORES - FELIPE</div>
             </div>
-              <div class="col-10 container p-0">
-                  <div class="row"> favorito</div>
-                  <div class="row">
-                      <div class="botoon col-1">col-1</div>
-                      <div class="cartas col-8">col-8
-                          <!-- <div></div> -->
-                      </div>
-                      <div class="botoon col-1"> col-1</div>
+            <div class="col-10 pe-0">
+              <div class="container-fluid ps-0">
+                <div class="row mt-3">
+                  <!-- FAVORITOS -->
+                  <div
+                    v-if="favoritos.length > 0"
+                    class="d-flex flex-wrap col-10"
+                  >
+                    <h2 class="text-center w-100">Favorite</h2>
                   </div>
-              </div>
-          </div>
-
-      </div>
-
-        <!-- fin estructura -->
-
-
-        
-
-        <div id="mainDiv" class="container-fluid text-center">
-          <div class="row">
-            
-
-            <!-- favoritos -->
-            <div v-if="favoritos.length > 0" class="d-flex flex-wrap col-10">
-              <h2 class="text-center w-100">Favorite</h2>
-              <div
-                v-for=" personaje in favoritos"
-                class=" container text-center mb-2 mt-2 icon-link-hover bg-warning"
-                style="width: 18rem"
-              >
-              
-                  <img
-                    :src="personaje.image ? personaje.image : urlImagen"
-                    class="card-img-top"
-                    alt="..."
-                  />
-                  <div class="card-body">
-                    <h5 class="card-title">{{personaje.name}}</h5>
-                    <p class="card-text">{{personaje.ancestry}}</p>
-                    <button
-                      @click="mostrarModal(personaje)"
-                      type="button"
-                      class="btn btn-dark"
-                      data-bs-toggle="modal"
-                      data-bs-target="#staticBackdrop"
+                  <div
+                    v-for=" personaje in favoritos"
+                    class="container text-center mb-2 mt-2 icon-link-hover bg-warning"
+                    style="width: 18rem"
+                  >
+                    <img
+                      :src="personaje.image ? personaje.image : urlImagen"
+                      class="card-img-top"
+                      alt="..."
+                    />
+                    <div class="card-body">
+                      <h5 class="card-title">{{personaje.name}}</h5>
+                      <p class="card-text">{{personaje.ancestry}}</p>
+                      <button
+                        @click="mostrarModal(personaje)"
+                        type="button"
+                        class="btn btn-dark"
+                        data-bs-toggle="modal"
+                        data-bs-target="#staticBackdrop"
+                      >
+                        More Information
+                      </button>
+                      <button @click="eliminarFavorito(personaje)" class="btn">
+                        Eliminar
+                        <!-- <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" class="bi bi-bookmark-star-fill" viewBox="0 0 16 16">
+                          <path fill-rule="evenodd" d="M2 15.5V2a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v13.5a.5.5 0 0 1-.74.439L8 13.069l-5.26 2.87A.5.5 0 0 1 2 15.5zM8.16 4.1a.178.178 0 0 0-.32 0l-.634 1.285a.178.178 0 0 1-.134.098l-1.42.206a.178.178 0 0 0-.098.303L6.58 6.993c.042.041.061.1.051.158L6.39 8.565a.178.178 0 0 0 .258.187l1.27-.668a.178.178 0 0 1 .165 0l1.27.668a.178.178 0 0 0 .257-.187L9.368 7.15a.178.178 0 0 1 .05-.158l1.028-1.001a.178.178 0 0 0-.098-.303l-1.42-.206a.178.178 0 0 1-.134-.098L8.16 4.1z"/>
+                        </svg>
+                          <path
+                            d="M7.84 4.1a.178.178 0 0 1 .32 0l.634 1.285a.178.178 0 0 0 .134.098l1.42.206c.145.021.204.2.098.303L9.42 6.993a.178.178 0 0 0-.051.158l.242 1.414a.178.178 0 0 1-.258.187l-1.27-.668a.178.178 0 0 0-.165 0l-1.27.668a.178.178 0 0 1-.257-.187l.242-1.414a.178.178 0 0 0-.05-.158l-1.03-1.001a.178.178 0 0 1 .098-.303l1.42-.206a.178.178 0 0 0 .134-.098L7.84 4.1z"
+                          />
+                          <path
+                            d="M2 2a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v13.5a.5.5 0 0 1-.777.416L8 13.101l-5.223 2.815A.5.5 0 0 1 2 15.5V2zm2-1a1 1 0 0 0-1 1v12.566l4.723-2.482a.5.5 0 0 1 .554 0L13 14.566V2a1 1 0 0 0-1-1H4z"
+                          />
+                        </svg> -->
+                      </button>
+                    </div>
+                  </div>
+                  <!-- FIN FAVORITOS -->
+                  <div class="col-1">col-1</div>
+                  <div
+                    class="cartas col-10 d-flex flex-wrap justify-content-center px-0"
+                  >
+                    <!-- CARD -->
+                    <div
+                      v-if="personajes.length == 0"
+                      class="d-flex align-self-center fs-1"
                     >
-                      More Information
-                    </button>
-                    <button @click="eliminarFavorito(personaje)" class="btn">
-                      <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" class="bi bi-bookmark-star-fill" viewBox="0 0 16 16">
-                        <path fill-rule="evenodd" d="M2 15.5V2a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v13.5a.5.5 0 0 1-.74.439L8 13.069l-5.26 2.87A.5.5 0 0 1 2 15.5zM8.16 4.1a.178.178 0 0 0-.32 0l-.634 1.285a.178.178 0 0 1-.134.098l-1.42.206a.178.178 0 0 0-.098.303L6.58 6.993c.042.041.061.1.051.158L6.39 8.565a.178.178 0 0 0 .258.187l1.27-.668a.178.178 0 0 1 .165 0l1.27.668a.178.178 0 0 0 .257-.187L9.368 7.15a.178.178 0 0 1 .05-.158l1.028-1.001a.178.178 0 0 0-.098-.303l-1.42-.206a.178.178 0 0 1-.134-.098L8.16 4.1z"/>
-                      </svg>
+                      <h2>Sorry, your search was not found</h2>
+                    </div>
+                    <div
+                      id="cards-div"
+                      v-for="personaje in personajes"
+                      class="card container text-center mb-2"
+                      style="width: 18rem"
+                    >
+                      <!-- <div v-if="personaje.image"> -->
+                      <img
+                        :src="personaje.image ? personaje.image : urlImagen"
+                        class="card-img-top img"
+                        alt="..."
+                      />
+                      <!-- </div> -->
+
+                      <div class="card-body">
+                        <h5 class="card-title">{{personaje.name}}</h5>
+                        <p v-if="personaje.ancestry" class="card-text">
+                          <strong>Ancestry :</strong>
+                          {{personaje.ancestry}}
+                        </p>
+                        <p v-if="personaje.house" class="card-text">
+                          <strong>House :</strong> {{personaje.house}}
+                        </p>
+                        <button
+                          @click="mostrarModal(personaje)"
+                          type="button"
+                          class="btn btn-dark"
+                          data-bs-toggle="modal"
+                          data-bs-target="#staticBackdrop"
+                        >
+                          More Information
+                        </button>
+                        <button @click="agregarFavorito(personaje)" class="btn">
+                          <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            width="32"
+                            height="32"
+                            fill="currentColor"
+                            class="bi bi-bookmark-star"
+                            viewBox="0 0 16 16"
+                          >
+                            <path
+                              d="M7.84 4.1a.178.178 0 0 1 .32 0l.634 1.285a.178.178 0 0 0 .134.098l1.42.206c.145.021.204.2.098.303L9.42 6.993a.178.178 0 0 0-.051.158l.242 1.414a.178.178 0 0 1-.258.187l-1.27-.668a.178.178 0 0 0-.165 0l-1.27.668a.178.178 0 0 1-.257-.187l.242-1.414a.178.178 0 0 0-.05-.158l-1.03-1.001a.178.178 0 0 1 .098-.303l1.42-.206a.178.178 0 0 0 .134-.098L7.84 4.1z"
+                            />
+                            <path
+                              d="M2 2a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v13.5a.5.5 0 0 1-.777.416L8 13.101l-5.223 2.815A.5.5 0 0 1 2 15.5V2zm2-1a1 1 0 0 0-1 1v12.566l4.723-2.482a.5.5 0 0 1 .554 0L13 14.566V2a1 1 0 0 0-1-1H4z"
+                            />
+                          </svg>
+                        </button>
+                      </div>
+                    </div>
+                    <!-- FIN CARD -->
+                  </div>
+                  <div class="col-1">
+                    <button
+                      class="btn btn-outline-primary"
+                      @click="siguientePersonaje"
+                    >Next
+                      <!-- <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="16"
+                        height="16"
+                        fill="currentColor"
+                        class="bi bi-caret-right"
+                        viewBox="0 0 16 16"
+                      >
                         <path
-                          d="M7.84 4.1a.178.178 0 0 1 .32 0l.634 1.285a.178.178 0 0 0 .134.098l1.42.206c.145.021.204.2.098.303L9.42 6.993a.178.178 0 0 0-.051.158l.242 1.414a.178.178 0 0 1-.258.187l-1.27-.668a.178.178 0 0 0-.165 0l-1.27.668a.178.178 0 0 1-.257-.187l.242-1.414a.178.178 0 0 0-.05-.158l-1.03-1.001a.178.178 0 0 1 .098-.303l1.42-.206a.178.178 0 0 0 .134-.098L7.84 4.1z"
+                          d="M6 12.796V3.204L11.481 8 6 12.796zm.659.753 5.48-4.796a1 1 0 0 0 0-1.506L6.66 2.451C6.011 1.885 5 2.345 5 3.204v9.592a1 1 0 0 0 1.659.753z"
                         />
-                        <path
-                          d="M2 2a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v13.5a.5.5 0 0 1-.777.416L8 13.101l-5.223 2.815A.5.5 0 0 1 2 15.5V2zm2-1a1 1 0 0 0-1 1v12.566l4.723-2.482a.5.5 0 0 1 .554 0L13 14.566V2a1 1 0 0 0-1-1H4z"
-                        />
-                      </svg>
+                      </svg> -->
                     </button>
                   </div>
                 </div>
               </div>
-              
-
-              <!-- aqui se acaba favoritos -->
-
-            <!-- cards -->
-
-            
+            </div>
           </div>
         </div>
-        <!-- Modal -->
+        <!-- FIN ESTRUCTURA -->
+        <!-- MODAL -->
         <div
           class="modal fade"
           id="staticBackdrop"
@@ -267,6 +344,7 @@
             </div>
           </div>
         </div>
+        <!-- FIN MODAL -->
       </main>
     </div>
 
